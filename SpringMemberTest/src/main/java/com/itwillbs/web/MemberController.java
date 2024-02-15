@@ -74,6 +74,15 @@ public class MemberController {
 	}
 	
 	
+	// 로그아웃
+	@RequestMapping(value = "/logout", method = RequestMethod.GET)
+	public String memberLogoutGET(HttpSession session) {
+		logger.debug(" memberLogoutGET() 호출 ");
+		session.invalidate();
+		
+		return "redirect:/member/main";
+	}
+	
 	
 	
 	
