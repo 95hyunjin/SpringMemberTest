@@ -1,5 +1,7 @@
 package com.itwillbs.persistence;
 
+import java.util.List;
+
 import com.itwillbs.domain.MemberVO;
 
 public interface MemberDAO {
@@ -19,5 +21,6 @@ public interface MemberDAO {
 	// 회원정보 삭제
 	public int deleteMember(MemberVO dvo);
 	
-	
+	// 회원정보 목록 보기
+	public List<MemberVO> getMemberList();
 }

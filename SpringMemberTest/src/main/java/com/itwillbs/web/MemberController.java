@@ -1,5 +1,7 @@
 package com.itwillbs.web;
 
+import java.util.List;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
@@ -123,6 +125,7 @@ public class MemberController {
 		return "redirect:/member/update";
 	}
 	
+	
 	// 회원정보 삭제
 	@RequestMapping(value = "/delete", method = RequestMethod.GET)
 	public String memberDeleteGET() {
@@ -144,7 +147,18 @@ public class MemberController {
 	}
 	
 	
-	
+	// 회원정보 목록 보기 (관리자)
+	@RequestMapping(value = "/list", method = RequestMethod.GET)
+	public String memberListGET(HttpSession session, Model model) {
+		logger.debug(" memberListGET() 호출 ");
+		String id =(String) session.getAttribute("id");
+		if(id == null || !id.equals("admin")) {
+			return "redirect:/member/login";
+		}
+		List<MemberVO> memberList = mService.getMemberList();
+		model.addAttribute("memberList", memberList);
+		return "/member/list";
+	}
 	
 	
 	

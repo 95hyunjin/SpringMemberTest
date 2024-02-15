@@ -35,7 +35,9 @@
 		where userid = #{userid} and userpw = #{userpw}
 	</select>
 	
-	
-	
+	<!-- 회원 목록정보 조회 -->
+	<select id="getMemberList" resultType="MemberVO">
+		select * from tbl_member
+	</select>
 	
 </mapper>
