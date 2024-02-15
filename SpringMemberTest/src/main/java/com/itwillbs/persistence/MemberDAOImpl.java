@@ -1,6 +1,8 @@
 package com.itwillbs.persistence;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -46,6 +48,18 @@ public class MemberDAOImpl implements MemberDAO{
 		MemberVO vresultVO = sqlSession.selectOne(NAMESPACE + ".loginMember", vo);
 		
 		return vresultVO;
+	}
+
+	/* 테스트용 */
+	@Override
+	public MemberVO loginMember(String userid, String userpw) {
+		logger.debug(" loginMember(String userid, String userpw) 실행 ");
+		
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("userid", userid);
+		paramMap.put("userpw", userpw);
+		
+		return sqlSession.selectOne(NAMESPACE + ".loginMember", paramMap);
 	}
 
 	@Override
