@@ -1,6 +1,7 @@
 package com.itwillbs.web;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -44,7 +45,7 @@ public class MemberController {
 		
 	}
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String memberLoginPOST(MemberVO vo) {
+	public String memberLoginPOST(MemberVO vo, HttpSession session) {
 		logger.debug(" memberLoginPOST() 실행 ");
 		logger.debug(" 로그인 정보 : " + vo);
 		
@@ -57,11 +58,20 @@ public class MemberController {
 			addr = "/member/login";
 		}else{
 			logger.debug(" 로그인 성공! ");
+			session.setAttribute("id", resultVO.getUserid());
 			addr = "/member/main";
 		}
 		return "redirect:"+ addr;
 	}
 	
+	
+	// 메인페이지
+	@RequestMapping(value = "/main", method = RequestMethod.GET)
+	public String memberMainGET() {
+		logger.debug(" memberMainGET() 호출 ");
+		
+		return "/member/main";
+	}
 	
 	
 	
