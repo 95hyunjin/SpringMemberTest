@@ -29,6 +29,12 @@
 		where userid = #{userid} and userpw = #{userpw}
 	</select>
 	
+	<!-- 회원정보 삭제 -->
+	<select id="deleteMember">
+		delete from tbl_member 
+		where userid = #{userid} and userpw = #{userpw}
+	</select>
+	
 	
 	
 	

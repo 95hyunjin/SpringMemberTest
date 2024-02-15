@@ -123,8 +123,25 @@ public class MemberController {
 		return "redirect:/member/update";
 	}
 	
-	
-	
+	// 회원정보 삭제
+	@RequestMapping(value = "/delete", method = RequestMethod.GET)
+	public String memberDeleteGET() {
+		logger.debug(" memberDeleteGET() 호출 ");
+		
+		return "/member/delete";
+	}
+	@RequestMapping(value = "/delete", method = RequestMethod.POST)
+	public String memberDeletePOST(MemberVO vo, HttpSession session) {
+		logger.debug(" memberDeletePOST() 호출 ");
+		logger.debug(" 삭제 정보 : " + vo);
+		int result = mService.memberDelete(vo);
+		if(result == 1) {
+			session.invalidate();
+			return "redirect:/member/main";
+		}
+		logger.debug(" 비밀번호 오류! ");
+		return "redirect:/member/delete";
+	}
 	
 	
 	
