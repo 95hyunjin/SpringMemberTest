@@ -40,8 +40,32 @@ public class MemberController {
 	// 로그인
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public void memberLoginGET() {
-		logger.debug(" memberLoginGET() 실행");
+		logger.debug(" memberLoginGET() 실행 ");
 		
 	}
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	public String memberLoginPOST(MemberVO vo) {
+		logger.debug(" memberLoginPOST() 실행 ");
+		logger.debug(" 로그인 정보 : " + vo);
+		
+		MemberVO resultVO = mService.memberLogin(vo);
+		
+		String addr = "";
+		
+		if(resultVO == null) {
+			logger.debug(" 로그인 실패! ");
+			addr = "/member/login";
+		}else{
+			logger.debug(" 로그인 성공! ");
+			addr = "/member/main";
+		}
+		return "redirect:"+ addr;
+	}
+	
+	
+	
+	
+	
+	
 	
 }

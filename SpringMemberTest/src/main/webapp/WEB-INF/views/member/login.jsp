@@ -7,17 +7,15 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>회원가입 페이지 입니다.</h1>
+	<h1>로그인 페이지 입니다.</h1>
 	
 	<fieldset>
-		<legend>회원가입</legend>
+		<legend>로그인</legend>
 		<form action="" method="post">
 			아이디 : <input type="text" name="userid"> <br>
 			비밀번호 : <input type="password" name="userpw"> <br>
-			이름 : <input type="text" name="username"> <br>
-			이메일 : <input type="email" name="useremail"> <br>
-			
-			<input type="submit" value="회원가입">
+			<input type="submit" value="로그인">
+			<input type="button" value="회원가입" onclick="location.href='/member/memberjoin'">
 		</form>
 	</fieldset>
 </body>
