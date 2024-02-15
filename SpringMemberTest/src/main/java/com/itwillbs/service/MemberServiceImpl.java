@@ -38,6 +38,15 @@ public class MemberServiceImpl implements MemberService{
 		MemberVO resultVO = mdao.getMember(id);
 		return resultVO;
 	}
+
+	@Override
+	public int memberUpdate(MemberVO vo) {
+		logger.debug(" S : memberUpdate(MemberVO vo) 실행");
+		
+		return mdao.updateMember(vo);
+	}
+	
+	
 	
 	
 	

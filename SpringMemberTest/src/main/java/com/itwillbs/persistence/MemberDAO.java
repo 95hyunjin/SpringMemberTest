@@ -13,6 +13,8 @@ public interface MemberDAO {
 	// 회원정보 조회
 	public MemberVO getMember(String userid);
 	
+	// 회원정보 수정
+	public int updateMember(MemberVO uvo);
 	
 	
 }

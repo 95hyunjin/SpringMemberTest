@@ -88,7 +88,7 @@ public class MemberController {
 	
 	
 	// 회원정보 조회
-	@RequestMapping(value = "info", method = RequestMethod.GET)
+	@RequestMapping(value = "/info", method = RequestMethod.GET)
 	public void memberInfoGET(HttpSession session, Model model) {
 		logger.debug(" memberInfoGET() 호출 ");
 		
@@ -99,7 +99,29 @@ public class MemberController {
 	}
 	
 	
-	
+	// 회원정보 수정
+	@RequestMapping(value = "/update", method = RequestMethod.GET)
+	public void memberUpdateGET(HttpSession session, Model model) {
+		logger.debug(" memberUpdateGET() 호출 ");
+		String id = (String) session.getAttribute("id");
+		MemberVO resultVO = mService.memberInfo(id);
+		
+		model.addAttribute("resultVO", resultVO);
+	}
+		
+	@RequestMapping(value = "/update", method = RequestMethod.POST)
+	public String memberUpdatePOST(MemberVO vo) {
+		logger.debug(" memberUpdatePOST() 호출");
+		logger.debug(" 수정할 정보 : " + vo);
+		
+		int result = mService.memberUpdate(vo);
+		if(result == 1) {
+			logger.debug(" 수정완료! ");
+			return "redirect:/member/main";
+		}
+		logger.debug(" 수정실패! ");
+		return "redirect:/member/update";
+	}
 	
 	
 	
